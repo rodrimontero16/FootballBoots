@@ -48,7 +48,7 @@ while (stock != 'f') {
             alert('Elegiste Puma Future');
             break;
         }
-    stock = prompt('Nuestro stock es el siguiente\n1-Adidas predator $120.000\n2-Adidas copa $115.000\n3-Nike mercurial $128.000\n4-Nike tiempo $95.000\n5-Nike Phantom $130.000\n6-Puma future $100.000\nSelecciona el número que deseas adquirir\nf-Finalizar elección');
+    stock = prompt('¿Desea sumar otro producto más? \nNuestro stock es el siguiente\n1-Adidas predator $120.000\n2-Adidas copa $115.000\n3-Nike mercurial $128.000\n4-Nike tiempo $95.000\n5-Nike Phantom $130.000\n6-Puma future $100.000\nSelecciona el número que deseas adquirir\nf-Finalizar elección y continuar con la compra');
 }
 
 //Llamo la function para obtener el precio total
