@@ -52,7 +52,7 @@
   width: 100%;
   margin-top: 50px;
 }
-.container-main .tienda {
+.container-main .tienda-title h2 {
   color: white;
 }
 .container-main .productos {
@@ -60,7 +60,7 @@
   color: white;
   border-radius: 30px;
   background-color: whitesmoke;
-  width: 80%;
+  width: 100%;
   height: auto;
   justify-content: center;
   padding: 0px 20px 20px 20px;
@@ -101,10 +101,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-items: center;
+  justify-content: flex-end;
+  position: relative;
 }
 .container-footer .btn-wpp {
-  position: relative;
   width: 80px;
   height: 80px;
   padding: 0px 20px 15px 0px;
