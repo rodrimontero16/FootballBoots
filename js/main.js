@@ -43,6 +43,7 @@ const productos = [
     new producto ('puma', 'ultra', 'negro y amarillo', '39-43', 85000, '24')
 ];
 
+productos[4].productoVendido();
 productos[10].productoVendido();
 
 //muestro el array
@@ -53,7 +54,6 @@ console.table (productos);
 //primero le pido al usuario para filtrar
 let filtroPedido = prompt ('Busca por marca o modelo').toUpperCase();
 const productosFiltrados = productos.filter ((producto) => (producto.marca.toUpperCase().includes(filtroPedido) || producto.modelo.toUpperCase().includes(filtroPedido)) && producto.disponible === true);
-console.table (productosFiltrados);
 
 //le muestro el resultado de su busqueda y si desea comprar
 let resultadoBusqueda = 'El resultado de su busqueda es:\n';
@@ -67,7 +67,7 @@ if (productosFiltrados.length > 0) {
         } else {
             const productoSeleccionado = productosFiltrados.find((producto) => producto.id == (adquirirProducto));
             if (productoSeleccionado) {
-                const resultadoCompra = `Usted ha adquirido:\n${productoSeleccionado.marca} ${productoSeleccionado.modelo} por un precio de ${productoSeleccionado.precio}. ¡Gracias por su compra!`;
+                const resultadoCompra = `Usted ha adquirido:\n${productoSeleccionado.marca} ${productoSeleccionado.modelo} por un precio de $${productoSeleccionado.precio}. ¡Gracias por su compra!`;
                 alert(resultadoCompra);
             } else {
                 alert('El ID seleccionado no es válido');
