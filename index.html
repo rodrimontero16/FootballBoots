@@ -17,7 +17,7 @@
         <div class="container-header">
             <a href="index.html" class="enlace-logo">            
                 <div class="logo">
-                <img src="./img/logo.png" alt="logo" width="100px" height="auto">
+                <img src="./img/logo.png" alt="logo" width="80px" height="auto">
                 <h1>FootballBoots</h1>
                 </div>
             </a>
@@ -32,157 +32,44 @@
         
     </header>
     <main class="container-main">
-        <div class="tienda-title">
-            <h2>PRODUCTOS</h2>
+        <div class="filtrado">
+            <div class="tipoBotines filtro">
+                <h4>TIPO</h4>
+                <label><input type="checkbox" id="futbol11" value="botinesFutbol11">  Futbol 11</label>
+                <label><input type="checkbox" id="futbol5" value="botinesFutbol5">  Futbol 5</label>
+            </div>
+            <div class="marcaBotines filtro">
+                <h4>MARCA</h4>
+                <label><input type="checkbox" id="marcaAdidas" value="marcaAdidas">  Adidas</label>
+                <label><input type="checkbox" id="marcaNike" value="marcaNike">  Nike</label>
+                <label><input type="checkbox" id="marcaPuma" value="marcaPuma">  Puma</label>
+            </div>
+            <div class="precioBotines filtro">
+                <h4>PRECIO</h4>
+            </div>
         </div>
         <div class="tienda-body">
-            <div class="filtros">
-                
-            </div>
-            <div class="productos">
-                <div class="marca">
+            <div class="tienda" id="tienda">
+                <div class="adidas">
                     <h3>ADIDAS</h3>
+                    <div class="adidas-prods productos" id="adidasProds">
+                        <!-- aca van los botines de adidas -->
+                    </div>    
                 </div>
-                <div class="adidas-prod">
-                    <div class="items-prod">
-                        <img src="./img/adidas-copa.png" alt="adidas copa" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-copa1.png" alt="adidas copa" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-nemeziz.png" alt="adidas nemeziz" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-nemeziz1.png" alt="adidas nemeziz" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-predator.png" alt="adidas predator" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-predator1.png" alt="adidas predator" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-predator2.png" alt="adidas predator" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-predator3.png" alt="adidas predator" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-predator4.png" alt="adidas predator" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/adidas-x.png" alt="adidas x" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                </div>
-                <div class="marca">
+                <div class="nike">
                     <h3>NIKE</h3>
+                    <div class="nike-prods productos" id="nikeProds">
+                        <!-- aca van los botines de nike -->
+                    </div>  
                 </div>
-                <div class="nike-prod">
-                    <div class="items-prod">
-                        <img src="./img/nike-hyper.png" alt="nike hyper" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial1.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial2.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial3.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial4.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial5.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-mercurial6.png" alt="nike mercurial" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/nike-tiempo.png" alt="nike tiempo" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                </div>
-                <div class="marca">
+                <div class="puma">
                     <h3>PUMA</h3>
-                </div>
-                <div class="puma-prod">
-                    <div class="items-prod">
-                        <img src="./img/puma-future.png" alt="puma future" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/puma-future1.png" alt="puma future" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/puma-future2.png" alt="puma future" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/puma-ultra.png" alt="puma ultra" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/puma-ultra1.png" alt="puma ultra" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
-                    <div class="items-prod">
-                        <img src="./img/puma-ultra2.png" alt="puma ultra" width="250px" height="250px">
-                        <p></p>
-                        <a href="#" class="btn">Añadir al carrito</a>
-                    </div>
+                    <div class="puma-prods productos" id="pumaProds">
+                        <!-- aca van los botines de puma -->
+                    </div>  
                 </div>
             </div>
         </div>
-
     </main>
     <footer>
         <div class="container-footer">
@@ -194,6 +81,7 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="./js/database.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

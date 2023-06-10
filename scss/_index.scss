@@ -18,19 +18,23 @@ $color-principal: #00060C;
     .enlace-logo{
         text-decoration: none;
     img{
-    animation: rotate 2.5s linear infinite;
-    @keyframes rotate {
-        0% {
-        transform: rotate(0);
-        }
-        100% {
-        transform: rotate(360deg);
-        }
-        }
+        margin-right: 20px;
+        // animation: rotate 2.5s linear infinite;
+        // @keyframes rotate {
+        //     0% {
+        //     transform: rotate(0);
+        //     }
+        //     100% {
+        //     transform: rotate(360deg);
+        //     }
+        // }
     }
     h1{
         font: 40px 'Permanent Marker', cursive;
         color: whitesmoke;
+        @media only screen and (max-width:700px){
+            font-size: 20px;
+        }
     }
     }   
     .cart{
@@ -47,59 +51,73 @@ $color-principal: #00060C;
     }
     
 }
-//catalogo de productos
+
 .container-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 15% 85%;
     width: 100%;
-    margin-top: 50px;
-    .tienda-title h2{
-        color: white;
+    gap: 30px;
+    padding: 20px;
+    @media only screen and (max-width:950px){
+        grid-template-columns: auto;
+        justify-items: center;
     }
-    .productos{
-        margin: 50px 0px;
-        color: white;
+
+    //catalogo de productos
+    
+    .tienda-body{
+        width: 80%;
+        justify-content: center;
+        .tienda{
+            padding: 20px;
+            color: white;
+            border-radius: 30px;
+            background-color: whitesmoke;
+            width: 100%;
+            height: auto;
+            h3{
+                color: $color-principal;
+            }
+            .productos{
+                display: grid;
+                grid-template-columns: auto auto auto;
+                @media only screen and (max-width:950px){
+                    grid-template-columns: auto auto;
+                }
+                @media only screen and (max-width:650px){
+                    grid-template-columns: auto;
+                    padding: 0px 40px;
+                }
+            }
+        }
+    }
+
+    //filtrado
+    .filtrado{
         border-radius: 30px;
         background-color: whitesmoke;
-        width: 100%;
-        height: auto;
-        justify-content: center;
-        padding: 0px 20px 20px 20px;
-        .marca{
-            color: $color-principal;
-            margin: 30px 0px;
-        }
-        .adidas-prod{
+        padding: 20px;
+        width: 90%;
+        height: 350px;
+        @media only screen and (max-width:950px){
             display: grid;
-            gap: 25px;
             grid-template-columns: auto auto auto;
-            grid-template-rows: auto auto auto auto;
+            height: 180px;
+            width: 80%;
         }
-        .nike-prod{
+
+        .filtro{
             display: grid;
-            gap: 25px;
-            grid-template-columns: auto auto auto;
-            grid-template-rows: auto auto auto;
-        }
-        .puma-prod{
-            display: grid;
-            gap: 25px;
-            grid-template-columns: auto auto auto;
-            grid-template-rows: auto auto auto;
-        }
-        .items-prod{
-            justify-content: space-around;
-            border: 1px outset black; 
-            border-radius: 20px;
-            padding: 30px;
-            img{
-                margin-bottom: 30px;
-            }    
+            grid-template-columns: auto;
+            margin-top: 20px;
+            h4{
+                text-align: center;
+            }
         }
     }
 }
+
+
 
 
 //footer
