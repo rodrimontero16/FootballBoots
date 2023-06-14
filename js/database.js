@@ -17,15 +17,15 @@ class producto {
 //array de productos
 
 const adidas = [
-    new producto ('1', 'Adidas', 'Copa Sense.1 FG', 'Blanco', 110000, './img/adidas-copa.png'),
-    new producto ('2', 'Adidas', 'Copa Sense FG', 'Negro', 110000, './img/adidas-copa1.png'),
+    new producto ('1', 'Adidas', 'Copa Sense.1 FG', 'Blanco', 133000, './img/adidas-copa.png'),
+    new producto ('2', 'Adidas', 'Copa Sense FG', 'Negro', 133000, './img/adidas-copa1.png'),
     new producto ('3', 'Adidas', 'Nemeziz 19.2', 'Naranja', 90000, './img/adidas-nemeziz.png'),
     new producto ('4', 'Adidas', 'Nemeziz 19.1', 'Blanco y negro', 90000, './img/adidas-nemeziz1.png'),
     new producto ('5', 'Adidas', 'Predator Mutator 20.1', 'Blanco y negro', 100000, './img/adidas-predator.png'),
-    new producto ('6', 'Adidas', 'Predator EDGE.1 Low FG', 'Negro', 95000, './img/adidas-predator1.png'),
-    new producto ('7', 'Adidas', 'Predator Freak+', 'Blanco', 125000, './img/adidas-predator2.png'),
-    new producto ('8', 'Adidas', 'Predator Mutator 20.1', 'Blanco y naranja', 10000, './img/adidas-predator3.png'),
-    new producto ('9', 'Adidas', 'Predator Freak+', 'Negro y rosa', 125000, './img/adidas-predator4.png'),
+    new producto ('6', 'Adidas', 'Predator EDGE.1 Low FG', 'Negro', 71999, './img/adidas-predator1.png'),
+    new producto ('7', 'Adidas', 'Predator Freak+', 'Blanco', 123900, './img/adidas-predator2.png'),
+    new producto ('8', 'Adidas', 'Predator Mutator 20.1', 'Blanco y naranja', 97999, './img/adidas-predator3.png'),
+    new producto ('9', 'Adidas', 'Predator Freak+', 'Negro y rosa', 123900, './img/adidas-predator4.png'),
     new producto ('10', 'Adidas', 'X Speedportal', 'Negro', 80000, './img/adidas-x.png'),
 ];
 
@@ -42,9 +42,9 @@ const nike = [
 ];
 
 const puma = [
-    new producto ('20', 'Puma', 'Future Ultimate FG/AG', 'Azul', 95000, './img/puma-future.png'),
-    new producto ('21', 'Puma', 'Future 1.4 FG/AG Liberty', 'Blanco', 95000, './img/puma-future1.png'),
-    new producto ('22', 'Puma', 'Future Z 3.1 MXSG', 'Amarillo', 105000, './img/puma-future2.png'),
+    new producto ('20', 'Puma', 'Future Ultimate FG/AG', 'Azul', 87599, './img/puma-future.png'),
+    new producto ('21', 'Puma', 'Future 1.4 FG/AG Liberty', 'Blanco', 92500, './img/puma-future1.png'),
+    new producto ('22', 'Puma', 'Future Z 3.1 MXSG', 'Amarillo', 97200, './img/puma-future2.png'),
     new producto ('23', 'Puma', 'Ultra 1.1 FG/AG', 'Negro y rosa', 85000, './img/puma-ultra.png'),
     new producto ('24', 'Puma', 'Ultra 1.1 FG/AG', 'Naranja', 85000, './img/puma-ultra1.png'),
     new producto ('25', 'Puma', 'Ultra 3.2 FG/AG', 'Negro y amarillo', 85000, './img/puma-ultra2.png')
