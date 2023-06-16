@@ -4,6 +4,7 @@ let containerAdidas = document.getElementById('adidasProds');
 let containerNike = document.getElementById('nikeProds');
 let containerPuma = document.getElementById('pumaProds');
 
+
 //filtro el array por la marca
 let productosAdidas = productos.filter ((producto) => producto.marca === 'ADIDAS');
 let productosNike = productos.filter ((producto) => producto.marca === 'NIKE');
@@ -24,9 +25,19 @@ function renderizarProds (listaprods, containerProds) {
         </div>
         `;
     }
-} 
 
+    // tomo los botones
+    let botones = document.getElementsByClassName('addCarrito');
+
+    //evento
+    for (const boton of botones){
+        boton.addEventListener('click', () =>{
+            console.log ('hiciste click');
+        })
+    }
+}
 // llamo los productos y los pongo en el div que le corresponde
 renderizarProds (productosAdidas, containerAdidas);
-renderizarProds (productosAdidas, containerNike);
-renderizarProds (productosAdidas, containerPuma);
+renderizarProds (productosNike, containerNike);
+renderizarProds (productosPuma, containerPuma);
+
