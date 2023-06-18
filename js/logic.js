@@ -4,6 +4,10 @@ let containerAdidas = document.getElementById('adidasProds');
 let containerNike = document.getElementById('nikeProds');
 let containerPuma = document.getElementById('pumaProds');
 
+
+// creo el array para los productos del carro
+const carrito = [];
+
 // cargando productos
 function renderizarProds (productos) {
 
@@ -50,11 +54,19 @@ function renderizarProds (productos) {
     //evento
     for (const boton of botones){
         boton.addEventListener('click', () =>{
-            console.log ('hiciste click');
+            const prodAgregado = productos.find ((producto) => producto.id === boton.id);
+            agregarACarrito (prodAgregado);
         })
     }
 }
 
 // llamo la funcion 
 renderizarProds (productos);
+
+// funcion de agregar al carrito
+function agregarACarrito (producto){
+    carrito.push (producto);
+    // Guardar el carrito en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
 
