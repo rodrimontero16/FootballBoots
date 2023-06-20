@@ -11,6 +11,9 @@
     h4{
         color: whitesmoke;
     }
+    tr{
+        text-align: center;
+    }
 }
 
 .finalizarCompra{
@@ -22,5 +25,15 @@
     width: 85%;
     .btn-finalizar{
         font-size: 25px;
+    }
+}
+
+.btnDelete{
+    padding: 0;
+    border-radius: 50px;
+    background-color: transparent;
+    margin-right: 20px;
+    svg{
+        color: white;
     }
 }
