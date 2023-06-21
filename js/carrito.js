@@ -5,8 +5,7 @@ let totalCarrito = document.getElementById ('totalCompra');
 
 
 //traigo lo que tengo guardado en el ls
-const carritoEnLS = JSON.parse(localStorage.getItem('carrito'))
-console.table(carritoEnLS);
+const carritoEnLS = JSON.parse(localStorage.getItem('carrito'));
 
 // Función para renderizar el carrito
 function renderizarCarrito(prod) {
@@ -51,7 +50,8 @@ totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
 
 // funcion para eliminar el producto del carrito
 function eliminarProducto (prodAEliminar) {
-    let index = carritoEnLS.indexOf (prodAEliminar);
+    // let index = carritoEnLS.indexOf (prodAEliminar);
+    const index = carritoEnLS.findIndex((prod) => prod.id === prodAEliminar.id);
     if (index > -1) {
         carritoEnLS.splice (index, 1);
     }

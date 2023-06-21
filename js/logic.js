@@ -47,6 +47,7 @@ function renderizarProds (productos) {
         `;
     }
     }
+    
 
     // tomo los botones
     let botones = document.getElementsByClassName('addCarrito');
@@ -69,4 +70,3 @@ function agregarACarrito (producto){
     // Guardar el carrito en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
-
