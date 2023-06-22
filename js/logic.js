@@ -1,17 +1,18 @@
 // accedo a mi div en html por el id
 
-let containerAdidas = document.getElementById('adidasProds');
-let containerNike = document.getElementById('nikeProds');
-let containerPuma = document.getElementById('pumaProds');
+const containerAdidas = document.getElementById('adidasProds');
+const containerNike = document.getElementById('nikeProds');
+const containerPuma = document.getElementById('pumaProds');
 
 
 // creo el array para los productos del carro
-const carrito = [];
+let carrito = [];
+
 
 // cargando productos
 function renderizarProds (productos) {
 
-    for (prod of productos){
+    for (const prod of productos){
         if (prod.marca === 'ADIDAS'){
         containerAdidas.innerHTML += `
         <div class="card m-3" >
@@ -19,7 +20,7 @@ function renderizarProds (productos) {
             <div class="card-body">
             <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
             <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
-            <button class="btn btn-primary addCarrito" id=${prod.id}>Añadir al carrito</button>
+            <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
         `;
@@ -30,7 +31,7 @@ function renderizarProds (productos) {
             <div class="card-body">
             <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
             <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
-            <button class="btn btn-primary addCarrito" id=${prod.id}>Añadir al carrito</button>
+            <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
         `;
@@ -41,7 +42,7 @@ function renderizarProds (productos) {
             <div class="card-body">
             <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
             <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
-            <button class="btn btn-primary addCarrito" id=${prod.id}>Añadir al carrito</button>
+            <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
         `;
@@ -66,6 +67,12 @@ renderizarProds (productos);
 
 // funcion de agregar al carrito
 function agregarACarrito (producto){
+    //primero me fijo si existen productos en el localStorage y si existen lo parseo para crear un array    
+    let carritoExistente = localStorage.getItem('carrito');
+    if (carritoExistente) {
+        carrito = JSON.parse(carritoExistente);
+    }
+    //agrego el producto nuevo al array creado
     carrito.push (producto);
     // Guardar el carrito en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));

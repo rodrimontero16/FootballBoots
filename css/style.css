@@ -153,6 +153,9 @@
 .carrito tr {
   text-align: center;
 }
+.carrito td {
+  vertical-align: middle;
+}
 
 .finalizarCompra {
   margin-top: 20px;
