@@ -18,9 +18,9 @@ function renderizarProds (productos) {
         <div class="card m-3" >
             <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
             <div class="card-body">
-            <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
-            <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
-            <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
+                <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
+                <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
+                <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
         `;
@@ -29,9 +29,9 @@ function renderizarProds (productos) {
         <div class="card m-3" >
             <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
             <div class="card-body">
-            <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
-            <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
-            <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
+                <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
+                <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
+                <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
         `;
@@ -40,9 +40,9 @@ function renderizarProds (productos) {
         <div class="card m-3" >
             <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
             <div class="card-body">
-            <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
-            <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
-            <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
+                <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
+                <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
+                <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
         `;

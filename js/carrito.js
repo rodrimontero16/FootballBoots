@@ -8,7 +8,6 @@ let totalCarrito = document.getElementById ('totalCompra');
 const carritoEnLS = JSON.parse(localStorage.getItem('carrito')) || [];
 
 
-
 // Función para renderizar el carrito
 function renderizarCarrito(carritoEnLS) {
     for (const prod of carritoEnLS) {
@@ -47,16 +46,14 @@ function renderizarCarrito(carritoEnLS) {
     }    
 }
 
-
 // Renderizar los productos en el carrito
 renderizarCarrito(carritoEnLS);
 // Actualizar el total
 totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
 
-
 // funcion para eliminar el producto del carrito
 function eliminarProducto (prodAEliminar) {
-    const index = carritoEnLS.findIndex((prod) => prod.id === prodAEliminar.id);
+    const index = carritoEnLS.findIndex((prod) => prod.id == prodAEliminar.id);
     if (index > -1) {
         carritoEnLS.splice (index, 1);
     }
@@ -76,3 +73,4 @@ function eliminarProducto (prodAEliminar) {
 }
 
 
+// LOGRAR QUE EL TOTAL COMPRA DE LA LINEA 70 SE OBTENGA SUMANDO EL SUBTOTAL
