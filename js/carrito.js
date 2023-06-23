@@ -5,11 +5,10 @@ let totalCarrito = document.getElementById ('totalCompra');
 // declaro la variable del total de la compra
 let totalCompra;
 
-//traigo lo que tengo guardado en el localstorage
-const carritoEnLS = JSON.parse(localStorage.getItem('carrito')) || [];
-
+// //traigo lo que tengo guardado en el localstorage
+carrito = cargarCarritoLS();
 // Cargo los productos al carrito
-renderizarCarrito(carritoEnLS);
+renderizarCarrito(carrito);
 
-// Agrego el total al HTML
-totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
+// // Agrego el total al HTML
+// totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');

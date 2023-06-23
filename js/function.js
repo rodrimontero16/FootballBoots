@@ -47,28 +47,34 @@ function renderizarProds (productos) {
     }
 }
 
-//Agregar productos al carrito
-function agregarACarrito (producto){
-    //primero me fijo si existen productos en el localStorage y si existen lo parseo para crear un array    
-    let carritoExistente = localStorage.getItem('carrito');
-    if (carritoExistente) {
-        carrito = JSON.parse(carritoExistente);
-    }
-    //agrego el producto nuevo al array creado
-    carrito.push (producto);
-    // Guardar el carrito en localStorage
+//Guardar en el carrito
+function guardarCarritoLS(carrito) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
+//Cargar el carrito
+function cargarCarritoLS() {
+    return JSON.parse(localStorage.getItem("carrito")) || [];
+}
+
+//Agregar productos al carrito
+function agregarACarrito (producto){
+    //cargo lo que tengo en el carrito    
+    carrito = cargarCarritoLS();
+    //agrego el producto nuevo al carrito
+    carrito.push (producto);
+    // Guardar el carrito en localStorage
+    guardarCarritoLS (carrito);
+
+}
+
 // Renderizar carrito
-function renderizarCarrito(carritoEnLS) {
+function renderizarCarrito(carrito) {
     totalCompra = 0; 
     tablaBody.innerHTML = "";
-
-    for (const prod of carritoEnLS) {
-        const subtotalProducto = prod.precio;
-        totalCompra += subtotalProducto;
-
+    for (const prod of carrito) {
+        const subTotal = prod.precio * 1; // Calcular el subtotal según tu lógica
+        totalCompra += subTotal;
         tablaBody.innerHTML += `
         <tr>
             <td>
@@ -84,39 +90,37 @@ function renderizarCarrito(carritoEnLS) {
             </td>
             <td>$${prod.precio.toLocaleString('es-ES')}</td>
             <td>1</td>
-            <td class="subtotal">$${subtotalProducto.toLocaleString('es-ES')}</td>
+            <td class="subtotal">$${subTotal.toLocaleString('es-ES')}</td>
         </tr>
     `;
     }
+    //Incluyo el total
+    totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
     
     //agrego el evento al boton de eliminar
     let btnDelete = document.querySelectorAll('.btnDelete');
     for (const boton of btnDelete) {
         boton.addEventListener ('click', () => {
-            const prodAEliminar = carritoEnLS.find ((prod) => prod.id == boton.id);
+            const prodAEliminar = carrito.find ((prod) => prod.id == boton.id);
             eliminarProducto (prodAEliminar);
         })
     }
+
 
     return renderizarCarrito; 
 }
 
 // Eliminar producto del carrito
 function eliminarProducto (prodAEliminar) {
-    const index = carritoEnLS.findIndex((prod) => prod.id == prodAEliminar.id);
+    const index = carrito.findIndex((prod) => prod.id == prodAEliminar.id);
     if (index > -1) {
-        carritoEnLS.splice (index, 1);
+        carrito.splice (index, 1);
     }
-
     //vuelvo a renderizar el carrito
-    renderizarCarrito(carritoEnLS);
-
+    renderizarCarrito(carrito);
     //Elimino el producto del localStorage y lo vuelvo a guardar
     localStorage.removeItem('carrito');
-    localStorage.setItem('carrito', JSON.stringify(carritoEnLS));
-
+    // localStorage.setItem('carrito', JSON.stringify(carritoNuevo));
+    guardarCarritoLS(carrito);
     return eliminarProducto;
 }
-
-
-//ARMAR FUNCIONES PARA EL LOCALSTORAGE
