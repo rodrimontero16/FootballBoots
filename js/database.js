@@ -15,7 +15,6 @@ class producto {
 }
 
 //array de productos
-
 const productos = [
     new producto ('1', 'Adidas', 'Copa Sense.1 FG', 'Blanco', 133000, './img/adidas-copa.png'),
     new producto ('2', 'Adidas', 'Copa Sense FG', 'Negro', 133000, './img/adidas-copa1.png'),
