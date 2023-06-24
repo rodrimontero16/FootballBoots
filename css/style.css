@@ -43,7 +43,7 @@
 
 .container-main {
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 20% 80%;
   width: 100%;
   gap: 30px;
   padding: 20px;
@@ -83,19 +83,28 @@
     grid-template-columns: auto;
   }
 }
+.container-main .addCarrito {
+  border: 0px;
+}
+.container-main .addCarrito:hover {
+  background-color: greenyellow;
+  color: black;
+  border: 0px;
+}
 .container-main .filtrado {
   border-radius: 30px;
   background-color: whitesmoke;
   padding: 20px;
-  width: 90%;
-  height: 350px;
+  width: 100%;
+  height: 500px;
 }
 @media only screen and (max-width: 950px) {
   .container-main .filtrado {
     display: grid;
     grid-template-columns: auto auto auto;
-    height: 180px;
+    height: 300px;
     width: 90%;
+    padding-right: 0px;
   }
 }
 @media only screen and (max-width: 650px) {
@@ -103,8 +112,12 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto;
-    height: 200px;
-    width: 90%;
+    height: 250px;
+    width: 95%;
+    padding-right: 20px;
+  }
+  .container-main .filtrado h4 {
+    font-size: medium;
   }
 }
 .container-main .filtrado .filtro {
@@ -120,6 +133,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: 0px;
+  }
+  .container-main .filtrado .filtro .filtroPrecio input {
+    width: 60%;
+    margin-left: 40px;
+  }
+  .container-main .filtrado .filtro .filtroPrecio label {
+    margin-left: 40px;
   }
 }
 
@@ -129,6 +150,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   position: relative;
+  margin-top: 50px;
 }
 .container-footer .btn-wpp {
   width: 80px;
@@ -138,7 +160,6 @@
 
 .main-carrito {
   width: 100%;
-  height: 100vh;
 }
 
 .carrito {
@@ -161,6 +182,7 @@
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   width: 85%;

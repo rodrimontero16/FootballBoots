@@ -31,20 +31,30 @@
     </header>
     <main class="container-main">
         <div class="filtrado">
-            <div class="tipoBotines filtro">
+            <div class="tipoBotines filtro form-check">
                 <h4>TIPO</h4>
-                <label><input type="checkbox" id="futbol11" value="botinesFutbol11">  Futbol 11</label>
-                <label><input type="checkbox" id="futbol5" value="botinesFutbol5">  Futbol 5</label>
+                <label><input type="checkbox" class="form-check-input" id="futbol11" value="botinesFutbol11">  Futbol 11</label>
+                <label><input type="checkbox" class="form-check-input" id="futbol5" value="botinesFutbol5">  Futbol 5</label>
             </div>
-            <div class="marcaBotines filtro">
+            <div class="marcaBotines filtro form-check">
                 <h4>MARCA</h4>
-                <label><input type="checkbox" id="marcaAdidas" value="marcaAdidas">  Adidas</label>
-                <label><input type="checkbox" id="marcaNike" value="marcaNike">  Nike</label>
-                <label><input type="checkbox" id="marcaPuma" value="marcaPuma">  Puma</label>
+                <label><input type="checkbox" class="form-check-input" id="marcaAdidas" value="marcaAdidas">  Adidas</label>
+                <label><input type="checkbox" class="form-check-input" id="marcaNike" value="marcaNike">  Nike</label>
+                <label><input type="checkbox" class="form-check-input" id="marcaPuma" value="marcaPuma">  Puma</label>
             </div>
             <div class="precioBotines filtro">
                 <h4>PRECIO</h4>
-                <input type="range" class="form-control-range" id="formControlRange" min="50000" max="150000">
+                <div class="form-outline filtroPrecio" style="width: 70%;">
+                    <input step="1000" value="0" type="number" id="min" class="form-control" />
+                    <label class="form-label" for="typeNumber">Mínimo</label>
+                </div>
+                <div class="form-outline filtroPrecio" style="width: 70%;">
+                    <input step="1000" value="200000" type="number" id="max" class="form-control" />
+                    <label class="form-label" for="typeNumber">Máximo</label>
+                </div>
+            </div>
+            <div class="limpiarFiltro">
+                <button type="button" class="btn btn-dark">Borrar filtros</button>
             </div>
         </div>
         <div class="tienda-body" id="tiendaBody">
