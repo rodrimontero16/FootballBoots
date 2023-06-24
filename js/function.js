@@ -41,7 +41,7 @@ function renderizarProds (productos) {
     let botones = document.getElementsByClassName('addCarrito');
     for (const boton of botones){
         boton.addEventListener('click', () =>{
-            const prodAgregado = productos.find ((producto) => producto.id === boton.id);
+            const prodAgregado = productos.find ((producto) => producto.id == boton.id);
             agregarACarrito (prodAgregado);
         })
     }
@@ -72,9 +72,11 @@ function agregarACarrito (producto){
 function renderizarCarrito(carrito) {
     totalCompra = 0; 
     tablaBody.innerHTML = "";
+
     for (const prod of carrito) {
-        const subTotal = prod.precio * 1; // Calcular el subtotal según tu lógica
+        const subTotal = prod.precio * 1; 
         totalCompra += subTotal;
+
         tablaBody.innerHTML += `
         <tr>
             <td>
@@ -94,7 +96,8 @@ function renderizarCarrito(carrito) {
         </tr>
     `;
     }
-    //Incluyo el total
+
+    //Agrego el total
     totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
     
     //agrego el evento al boton de eliminar
@@ -105,14 +108,13 @@ function renderizarCarrito(carrito) {
             eliminarProducto (prodAEliminar);
         })
     }
-
-
-    return renderizarCarrito; 
 }
 
 // Eliminar producto del carrito
 function eliminarProducto (prodAEliminar) {
+    //Busco el indice del producto en el array
     const index = carrito.findIndex((prod) => prod.id == prodAEliminar.id);
+    //Lo comparo con -1 porque el indice de un array arranca desde 0
     if (index > -1) {
         carrito.splice (index, 1);
     }
@@ -120,7 +122,5 @@ function eliminarProducto (prodAEliminar) {
     renderizarCarrito(carrito);
     //Elimino el producto del localStorage y lo vuelvo a guardar
     localStorage.removeItem('carrito');
-    // localStorage.setItem('carrito', JSON.stringify(carritoNuevo));
     guardarCarritoLS(carrito);
-    return eliminarProducto;
 }

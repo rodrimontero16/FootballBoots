@@ -7,8 +7,6 @@ let totalCompra;
 
 // //traigo lo que tengo guardado en el localstorage
 carrito = cargarCarritoLS();
+
 // Cargo los productos al carrito
 renderizarCarrito(carrito);
-
-// // Agrego el total al HTML
-// totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
