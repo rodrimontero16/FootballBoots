@@ -143,9 +143,13 @@
     margin-left: 40px;
   }
 }
+.container-main .filtrado .filtro input {
+  border: solid 1px;
+}
 .container-main .filtrado .funcionesFiltro {
   display: flex;
   flex-direction: row;
+  justify-self: center;
 }
 .container-main .filtrado .funcionesFiltro button {
   width: 120px;

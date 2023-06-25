@@ -137,10 +137,15 @@ $color-principal: #00060C;
                 }
             }
             }
+            input{
+                border: solid 1px;
+            }
+            
         }
         .funcionesFiltro{
             display: flex;
             flex-direction: row;
+            justify-self: center;
             button{
                 width: 120px;
                 font-size: small;
