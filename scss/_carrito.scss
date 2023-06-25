@@ -2,19 +2,41 @@
     width: 100%;
 }
 
+.titleCarrito{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    h2{
+        color: black;
+        width: 210px;
+        padding: 10px;
+        background-color: beige;
+        border: solid 0px;
+        border-radius: 50px;
+    }
+}
+
 .carrito{
     width: 85%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-    h4{
-        color: whitesmoke;
-    }
     tr{
         text-align: center;
     }
     td {
         vertical-align: middle;
+    }
+    .inputCantidad{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        
+        input{
+            width: 70px;
+            text-align: center;
+    }
     }
 }
 

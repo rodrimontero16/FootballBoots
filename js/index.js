@@ -8,3 +8,5 @@ let carrito = [];
 
 // cargo los productos a la tienda 
 renderizarProds (productos);
+
+//Filtro de precios en el after

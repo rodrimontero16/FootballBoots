@@ -30,8 +30,10 @@
         </div>
     </header>
     <main class="main-carrito">
+        <div class="titleCarrito">
+            <h2>TU CARRITO:</h2>
+        </div>
         <div class="carrito table-responsive">
-            <h4>TU CARRITO:</h4>
             <table class="table table-bordered table-dark table-hover">
                 <thead>
                     <tr>
@@ -47,14 +49,75 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td class="total" colspan="2">TOTAL</td>
-                        <td id="totalCompra" colspan="3"></td>
+                        <td class="total" colspan="1">TOTAL</td>
+                        <td id="totalCompra" colspan="4"></td>
                     </tr>
                 </tfoot>
             </table>
         </div>
         <div class="finalizarCompra">
-            <button type="button" class="btn-finalizar btn btn-dark" id="finalizarCompra">FINALIZAR COMPRA</button>
+            <button type="button" class="btn-finalizar btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" id="finalizarCompra">FINALIZAR COMPRA</button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="titleModal"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- aca va la validacion de la tarjeta -->
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <label class="custom-control-label" for="credit">Tarjeta de credito</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="debit">Tarjeta de debito</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Nombre y apellido</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Nombre completo que figura en la tarjeta</small>
+                                <div class="invalid-feedback">
+                                    El nombre es obligatorio
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Número de tarjeta</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    El número de la tarjeta es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Vencimiento</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    El vencimiento es obligatorio
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-cvv">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    El codigo de seguridad es obligatorio
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="confirmarCompra">Confirmar</button>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer>
