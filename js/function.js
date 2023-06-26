@@ -129,3 +129,15 @@ function eliminarProducto (prodAEliminar) {
     guardarCarritoLS(carrito);
 }
 
+
+// Borrar LS
+function borrarLS (){
+    let compraFinalizada = document.getElementById('compraFinalizada');
+    compraFinalizada.addEventListener('click', () =>{
+    localStorage.clear();
+    location.reload();
+    })
+}
+
+
+

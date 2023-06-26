@@ -102,7 +102,6 @@ $color-principal: #00060C;
             grid-template-columns: auto auto auto;
             height: 300px;
             width: 90%;
-            padding-right: 0px;
         }
         @media only screen and (max-width:650px){
             display: grid;
@@ -127,6 +126,9 @@ $color-principal: #00060C;
                 flex-direction: row;
                 justify-content: space-between;
                 padding-left: 0px;
+                h4{
+                    margin-top: 5px;
+                }
             .filtroPrecio {
                 input{
                     width: 80%;
