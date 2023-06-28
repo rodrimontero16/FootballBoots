@@ -42,6 +42,21 @@ function renderizarProds (productos) {
         boton.addEventListener('click', () =>{
             const prodAgregado = productos.find ((producto) => producto.id == boton.id);
             agregarACarrito (prodAgregado);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+                Toast.fire({
+                icon: 'success',
+                title: `Agregaste ${prodAgregado.marca} ${prodAgregado.modelo}`
+            })
         })
     }
 }
@@ -101,9 +116,6 @@ function renderizarCarrito(carrito) {
     //Agrego el total
     totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
 
-    //Agrego el total al modal
-    titleModal.innerText = 'El total de tu compra es: $'+totalCompra.toLocaleString('es-ES');
-    
     //agrego el evento al boton de eliminar
     let btnDelete = document.querySelectorAll('.btnDelete');
     for (const boton of btnDelete) {
@@ -112,6 +124,8 @@ function renderizarCarrito(carrito) {
             eliminarProducto (prodAEliminar);
         })
     }
+
+    return totalCompra;
 }
 
 // Eliminar producto del carrito
@@ -128,7 +142,6 @@ function eliminarProducto (prodAEliminar) {
     localStorage.removeItem('carrito');
     guardarCarritoLS(carrito);
 }
-
 
 // Borrar LS
 function borrarLS (){
