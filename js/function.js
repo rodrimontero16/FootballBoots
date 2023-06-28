@@ -46,7 +46,7 @@ function renderizarProds (productos) {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 2000,
+                timer: 1500,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -146,17 +146,17 @@ function eliminarProducto (prodAEliminar) {
 //Finalizar compra
 function finalizarCompra (carrito){
     let btnFinalizar = document.getElementById('finalizarCompra');
-    let finalizar = document.getElementById('modalValidacion');
+    let finalizar = new bootstrap.Modal(document.getElementById('modalValidacion'));
 
     btnFinalizar.onclick = () => {
-        if (carrito.length === 0){
-            Swal.fire('El carrito esta vacio')
-            modalValidacion.style.display = 'none';
+        if (carrito.length === 0) {
+            finalizar.hide();
+            Swal.fire('El carrito está vacío');
         } else {
-            modalValidacion.style.display = 'block';
+            finalizar.show();
+            titleModal.innerText += 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES');;
         }
     }
-    
 }
 
 // Borrar LS
