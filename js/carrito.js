@@ -12,6 +12,9 @@ carrito = cargarCarritoLS();
 // Cargo los productos al carrito
 renderizarCarrito(carrito);
 
+//finalizar compra
+finalizarCompra(carrito);
+
 //Borrar el LS al finalizar la compra
 borrarLS(carrito);
 

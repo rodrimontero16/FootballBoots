@@ -143,6 +143,22 @@ function eliminarProducto (prodAEliminar) {
     guardarCarritoLS(carrito);
 }
 
+//Finalizar compra
+function finalizarCompra (carrito){
+    let btnFinalizar = document.getElementById('finalizarCompra');
+    let finalizar = document.getElementById('modalValidacion');
+
+    btnFinalizar.onclick = () => {
+        if (carrito.length === 0){
+            Swal.fire('El carrito esta vacio')
+            modalValidacion.style.display = 'none';
+        } else {
+            modalValidacion.style.display = 'block';
+        }
+    }
+    
+}
+
 // Borrar LS
 function borrarLS (){
     let compraFinalizada = document.getElementById('compraFinalizada');
