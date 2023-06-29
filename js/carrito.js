@@ -25,6 +25,4 @@ borrarLS(carrito);
 
 // con cantidad.value puedo multriplicar por el valor que tenga el input
 
-// popup al agregar al carrito mas numero en el icono de carrito
-
 // que se actualice la cantidad

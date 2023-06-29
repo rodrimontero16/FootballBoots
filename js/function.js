@@ -37,7 +37,8 @@ function renderizarProds (productos) {
     }
     }
     // evento para addCarrito
-    let botones = document.getElementsByClassName('addCarrito');
+    let botones = document.getElementsByClassName('addCarrito');  
+
     for (const boton of botones){
         boton.addEventListener('click', () =>{
             const prodAgregado = productos.find ((producto) => producto.id == boton.id);
@@ -57,9 +58,11 @@ function renderizarProds (productos) {
                 icon: 'success',
                 title: `Agregaste ${prodAgregado.marca} ${prodAgregado.modelo}`
             })
+            actualizarContador(carrito);
         })
     }
 }
+
 
 //Guardar en el carrito
 function guardarCarritoLS(carrito) {
@@ -79,16 +82,16 @@ function agregarACarrito (producto){
     carrito.push (producto);
     // Guardar el carrito en localStorage
     guardarCarritoLS (carrito);
-
 }
 
 // Renderizar carrito
 function renderizarCarrito(carrito) {
     totalCompra = 0; 
+    cantidad = 1;
     tablaBody.innerHTML = "";
 
     for (const prod of carrito) {
-        const subTotal = prod.precio * 1; 
+        const subTotal = prod.precio * cantidad; 
         totalCompra += subTotal;
 
         tablaBody.innerHTML += `
@@ -106,7 +109,7 @@ function renderizarCarrito(carrito) {
             </td>
             <td>$${prod.precio.toLocaleString('es-ES')}</td>
             <td>
-                <div class="inputCantidad"><input step="1" value="1" type="number" id="cantidadAgregada" class="form-control cantidadProds"/></div>
+                <div class="inputCantidad"><input step="1" value="${cantidad}" min="1" type="number" id="cantidadAgregada" class="form-control cantidadProds"/></div>
             </td>
             <td class="subtotal">$${subTotal.toLocaleString('es-ES')}</td>
         </tr>
@@ -122,6 +125,14 @@ function renderizarCarrito(carrito) {
         boton.addEventListener ('click', () => {
             const prodAEliminar = carrito.find ((prod) => prod.id == boton.id);
             eliminarProducto (prodAEliminar);
+            Toastify({
+
+                text: "Producto eliminado",
+                duration: 1000,
+                style: {
+                    background: "red",
+                },                
+                }).showToast();
         })
     }
 
@@ -167,6 +178,7 @@ function borrarLS (){
     location.reload();
     })
 }
+
 
 
 
