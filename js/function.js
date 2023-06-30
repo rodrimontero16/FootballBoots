@@ -173,12 +173,21 @@ function finalizarCompra (carrito){
 }
 
 // Borrar LS
-function borrarLS (){
-    let compraFinalizada = document.getElementById('compraFinalizada');
+function borrarLS (carrito){
+    let compraFinalizada = document.getElementById ('compraFinalizada');
+    let vaciarCarrito = document.getElementById ('vaciarCarrito')
     compraFinalizada.addEventListener('click', () =>{
     localStorage.clear();
     location.reload();
     })
+    vaciarCarrito.addEventListener('click', () =>{
+        if (carrito.length == 0) {
+            Swal.fire('El carrito está vacío');
+        } else {
+            localStorage.clear();
+            location.reload();
+        }
+        })
 }
 
 // Variable contador actualizada 

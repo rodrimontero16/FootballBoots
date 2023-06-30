@@ -213,7 +213,7 @@
 }
 
 .carrito {
-  width: 85%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
@@ -233,18 +233,45 @@
   width: 70px;
   text-align: center;
 }
+@media only screen and (max-width: 650px) {
+  .carrito thead {
+    font-size: 10px;
+  }
+  .carrito tbody {
+    font-size: 10px;
+  }
+  .carrito tbody img {
+    display: none;
+  }
+}
 
 .finalizarCompra {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-areas: "vaciar finalizar vacio";
   width: 85%;
 }
 .finalizarCompra .btn-finalizar {
   font-size: 25px;
+  grid-area: finalizar;
+  justify-self: center;
+}
+.finalizarCompra .btn-vaciar {
+  font-size: 15px;
+  grid-area: vaciar;
+  justify-self: start;
+}
+@media only screen and (max-width: 650px) {
+  .finalizarCompra .btn-finalizar {
+    font-size: 15px;
+  }
+  .finalizarCompra .btn-vaciar {
+    font-size: 10px;
+  }
 }
 
 .checkBody {
