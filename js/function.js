@@ -58,7 +58,6 @@ function renderizarProds (productos) {
                 icon: 'success',
                 title: `Agregaste ${prodAgregado.marca} ${prodAgregado.modelo}`
             })
-            actualizarContador(carrito);
         })
     }
 }
@@ -79,9 +78,12 @@ function agregarACarrito (producto){
     //cargo lo que tengo en el carrito    
     carrito = cargarCarritoLS();
     //agrego el producto nuevo al carrito
-    carrito.push (producto);
+    carrito.push (producto); 
     // Guardar el carrito en localStorage
     guardarCarritoLS (carrito);
+    //Actualizo el contador
+    contador = carrito.length;
+    mostrarContador(contador);
 }
 
 // Renderizar carrito
@@ -165,7 +167,7 @@ function finalizarCompra (carrito){
             Swal.fire('El carrito está vacío');
         } else {
             finalizar.show();
-            titleModal.innerText += 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES');;
+            titleModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES');;
         }
     }
 }
@@ -179,6 +181,16 @@ function borrarLS (){
     })
 }
 
+// Variable contador actualizada 
+function contadorCarro (carrito) {
+    carrito = cargarCarritoLS();
+    let contador = carrito.length;
+    return contador;
+}
 
-
-
+function mostrarContador (contador){
+    if (contador > '0'){
+        contadorCarrito.style.display = 'block'
+        contadorCarrito.innerText = contador;
+}
+}

@@ -31,6 +31,8 @@ $color-principal: #00060C;
     .cart{
         width: 50px;
         height: 50px;
+        position: relative;
+        display: inline-block;
         &:hover{
             transform: scale(1.1);
         }
@@ -39,8 +41,24 @@ $color-principal: #00060C;
             height: 100%;
             width: 100%;
             color: whitesmoke;
+        }
+    a{
+        text-decoration: none;
+        .contador-carrito{
+            position: absolute;
+            top: -20px;
+            right: -8px;
+            width: 26px;
+            height: 26px;
+            color: $color-principal;
+            border-radius: 50%;
+            background-color: greenyellow;
+            padding-left: 9px;
+            padding-top: 1px;
+            font-size: medium;
+            display: none;
+        }
     }
-    
 }
 
 .container-main{
