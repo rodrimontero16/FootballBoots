@@ -216,10 +216,11 @@ function finalizarCompra (carrito){
             Swal.fire('El carrito está vacío');
         } else {
             finalizar.show();
-            totalModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES').padEnd(6, "0");
+            totalModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES').padEnd(6, "0").replace(',' , '.');
         }
     }
 }
+
 
 // Borrar LS
 function borrarLS (carrito){
