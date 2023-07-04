@@ -18,7 +18,10 @@ function renderizarProds (productos) {
             <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
-                <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
+                <p class="card-text">${prod.precio.toLocaleString("es-AR", {
+                    style: "currency",
+                    currency: "ARS"
+                    })}</p>
                 <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
         </div>
         `;
@@ -28,7 +31,10 @@ function renderizarProds (productos) {
             <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
-                <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
+                <p class="card-text"> ${prod.precio.toLocaleString("es-AR", {
+                    style: "currency",
+                    currency: "ARS"
+                    })}</p>
                 <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
@@ -39,7 +45,10 @@ function renderizarProds (productos) {
             <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"> ${prod.marca} ${prod.modelo}</h5>
-                <p class="card-text"> $ ${prod.precio.toLocaleString('es-ES')}</p>
+                <p class="card-text"> ${prod.precio.toLocaleString("es-AR", {
+                    style: "currency",
+                    currency: "ARS"
+                    })}</p>
                 <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
             </div>
         </div>
@@ -101,7 +110,7 @@ function renderizarCarrito(carrito) {
     // let totalCompra = 0;
     if (localStorage.getItem('compraTotal')) {
         let totalActualizado = localStorage.getItem('compraTotal');
-        totalCompra = parseFloat(totalActualizado.replace(',' , '.')); 
+        totalCompra = totalActualizado.toLocaleString('es-AR');
     } else {
         totalCompra = 0;
     }
@@ -131,11 +140,19 @@ function renderizarCarrito(carrito) {
                 ${prod.marca}
                 ${prod.modelo}
             </td>
-            <td>$${prod.precio.toLocaleString('es-ES')}</td>
+            <td>${prod.precio.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS"
+                })}
+            </td>
             <td>
                 <div class="inputCantidad"><input step="1" value="1" min="1" type="number" id="cantidadAgregada-${prod.id}" class="form-control cantidadProds"/></div>
             </td>
-            <td class="subtotal" id= "subtotal-${prod.id}">$${subTotal.toLocaleString('es-ES')}</td>
+            <td class="subtotal" id= "subtotal-${prod.id}">${subTotal.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS"
+                })}
+            </td>
         `;
 
         tablaBody.appendChild (tr);
@@ -150,14 +167,20 @@ function renderizarCarrito(carrito) {
         inputCant.addEventListener ('input', () => {
             cantidad = parseInt (inputCant.value);
             subTotal = prod.precio * cantidad;
-            subtotalHTML.innerText = `$${subTotal.toLocaleString('es')}`;
+            subtotalHTML.innerText = `${subTotal.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS"
+                })}`;
             totalCompra = 0;
 
             const subtotales = document.getElementsByClassName ('subtotal');
             for (const subtotal of subtotales) {
-                totalCompra += parseFloat (subtotal.innerText.replace ("$" , "").replace(",", ""));
+                totalCompra += parseFloat (subtotal.innerText.replace ("$" , ""));
             }
-            totalCarrito.innerText = '$' + totalCompra;
+            totalCarrito.innerText = totalCompra.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS"
+                });
 
             localStorage.setItem(`cantidad-${prod.id}`, cantidad);
             localStorage.setItem('compraTotal', totalCompra);
@@ -165,7 +188,10 @@ function renderizarCarrito(carrito) {
     }
 
     //Agrego el total
-    totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES').replace(',' , '.');
+    totalCarrito.innerText = totalCompra.toLocaleString("es-AR", {
+        style: "currency",
+        currency: "ARS"
+        });
     
 
     //agrego el evento al boton de eliminar
@@ -216,7 +242,10 @@ function finalizarCompra (carrito){
             Swal.fire('El carrito está vacío');
         } else {
             finalizar.show();
-            totalModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES').padEnd(6, "0").replace(',' , '.');
+            totalModal.innerText = 'El total de tu compra es ' + totalCompra.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS"
+                });
         }
     }
 }
