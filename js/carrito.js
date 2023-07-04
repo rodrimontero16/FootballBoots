@@ -3,6 +3,8 @@ let tablaBody = document.getElementById('tablabody');
 let totalCarrito = document.getElementById ('totalCompra');
 let totalModal = document.getElementById('titleModal');
 
+let cantidad = 1;
+
 // declaro la variable del total de la compra
 let totalCompra;
 

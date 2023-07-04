@@ -1,6 +1,16 @@
+// Guardar productos en LS
+function guardarProductos (productos){
+    localStorage.setItem ('productos' , JSON.stringify(productos));
+}
+
+//Cargar productos
+function cargarProductos () {
+    return JSON.parse (localStorage.getItem('productos')) || [];
+}
+
 // Agregar productos al catalogo
 function renderizarProds (productos) {
-
+    productos = cargarProductos();
     for (const prod of productos){
         if (prod.marca === 'ADIDAS'){
         containerAdidas.innerHTML += `
@@ -88,16 +98,28 @@ function agregarACarrito (producto){
 
 // Renderizar carrito
 function renderizarCarrito(carrito) {
-    totalCompra = 0; 
-    cantidad = 1;
+    // let totalCompra = 0;
+    if (localStorage.getItem('compraTotal')) {
+        let totalActualizado = localStorage.getItem('compraTotal');
+        totalCompra = totalActualizado.toLocaleString('es-ES').replace(',' , '.'); 
+    } else {
+        totalCompra = 0;
+    }
     tablaBody.innerHTML = "";
-
+    
     for (const prod of carrito) {
-        const subTotal = prod.precio * cantidad; 
-        totalCompra += subTotal;
+        const cantidad = 1;
+        let subTotal = prod.precio * cantidad; 
+        if (!localStorage.getItem('compraTotal')) {
+            totalCompra += subTotal;}
+    }
 
-        tablaBody.innerHTML += `
-        <tr>
+    for (const prod of carrito){
+        let cantidad = parseInt(localStorage.getItem(`cantidad-${prod.id}`)) || 1;
+        let subTotal = prod.precio * cantidad;
+
+        const tr = document.createElement ('tr');
+        tr.innerHTML = `
             <td>
                 <button type="button" class="btnDelete" id="${prod.id}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
@@ -111,15 +133,40 @@ function renderizarCarrito(carrito) {
             </td>
             <td>$${prod.precio.toLocaleString('es-ES')}</td>
             <td>
-                <div class="inputCantidad"><input step="1" value="${cantidad}" min="1" type="number" id="cantidadAgregada" class="form-control cantidadProds"/></div>
+                <div class="inputCantidad"><input step="1" value="1" min="1" type="number" id="cantidadAgregada-${prod.id}" class="form-control cantidadProds"/></div>
             </td>
-            <td class="subtotal">$${subTotal.toLocaleString('es-ES')}</td>
-        </tr>
-    `;
+            <td class="subtotal" id= "subtotal-${prod.id}">$${subTotal.toLocaleString('es-ES')}</td>
+        `;
+
+        tablaBody.appendChild (tr);
+
+        const inputCant = document.getElementById (`cantidadAgregada-${prod.id}`);
+        const subtotalHTML = document.getElementById(`subtotal-${prod.id}`);
+
+        if (localStorage.getItem(`cantidad-${prod.id}`)) {
+            inputCant.value = cantidad; 
+        }
+
+        inputCant.addEventListener ('input', () => {
+            cantidad = parseInt (inputCant.value);
+            subTotal = prod.precio * cantidad;
+            subtotalHTML.innerText = `$${subTotal.toLocaleString('es-ES')}`;
+            totalCompra = 0;
+
+            const subtotales = document.getElementsByClassName ('subtotal');
+            for (const subtotal of subtotales) {
+                totalCompra += parseFloat (subtotal.innerText.replace ("$" , ""));
+            }
+            totalCarrito.innerText = '$' + totalCompra.toFixed(3).padEnd(6, "0").toLocaleString('es-ES');
+
+            localStorage.setItem(`cantidad-${prod.id}`, cantidad);
+            localStorage.setItem('compraTotal', totalCompra.toLocaleString('es-ES'));
+        })  
     }
 
     //Agrego el total
     totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
+    
 
     //agrego el evento al boton de eliminar
     let btnDelete = document.querySelectorAll('.btnDelete');
@@ -137,9 +184,11 @@ function renderizarCarrito(carrito) {
                 }).showToast();
         })
     }
+    
 
     return totalCompra;
 }
+
 
 // Eliminar producto del carrito
 function eliminarProducto (prodAEliminar) {
@@ -167,7 +216,7 @@ function finalizarCompra (carrito){
             Swal.fire('El carrito está vacío');
         } else {
             finalizar.show();
-            titleModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES');;
+            totalModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES').replace(',' , '.');
         }
     }
 }
