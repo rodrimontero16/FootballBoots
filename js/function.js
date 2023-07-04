@@ -101,7 +101,7 @@ function renderizarCarrito(carrito) {
     // let totalCompra = 0;
     if (localStorage.getItem('compraTotal')) {
         let totalActualizado = localStorage.getItem('compraTotal');
-        totalCompra = totalActualizado.toLocaleString('es-ES').replace(',' , '.'); 
+        totalCompra = totalActualizado.toLocaleString('es-ES'); 
     } else {
         totalCompra = 0;
     }
@@ -160,7 +160,7 @@ function renderizarCarrito(carrito) {
             totalCarrito.innerText = '$' + totalCompra.toFixed(3).padEnd(6, "0").toLocaleString('es-ES');
 
             localStorage.setItem(`cantidad-${prod.id}`, cantidad);
-            localStorage.setItem('compraTotal', totalCompra.toLocaleString('es-ES'));
+            localStorage.setItem('compraTotal', totalCompra.toFixed(3).padEnd(6, "0").toLocaleString('es-ES'));
         })  
     }
 
@@ -186,7 +186,7 @@ function renderizarCarrito(carrito) {
     }
     
 
-    return totalCompra;
+    return (totalCompra);
 }
 
 
@@ -216,7 +216,7 @@ function finalizarCompra (carrito){
             Swal.fire('El carrito está vacío');
         } else {
             finalizar.show();
-            totalModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES').replace(',' , '.');
+            totalModal.innerText = 'El total de tu compra es $' + totalCompra.toLocaleString('es-ES').padEnd(6, "0");
         }
     }
 }
