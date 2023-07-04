@@ -101,7 +101,7 @@ function renderizarCarrito(carrito) {
     // let totalCompra = 0;
     if (localStorage.getItem('compraTotal')) {
         let totalActualizado = localStorage.getItem('compraTotal');
-        totalCompra = totalActualizado.toLocaleString('es-ES'); 
+        totalCompra = parseFloat(totalActualizado.replace(',' , '.')); 
     } else {
         totalCompra = 0;
     }
@@ -150,22 +150,22 @@ function renderizarCarrito(carrito) {
         inputCant.addEventListener ('input', () => {
             cantidad = parseInt (inputCant.value);
             subTotal = prod.precio * cantidad;
-            subtotalHTML.innerText = `$${subTotal.toLocaleString('es-ES')}`;
+            subtotalHTML.innerText = `$${subTotal.toLocaleString('es')}`;
             totalCompra = 0;
 
             const subtotales = document.getElementsByClassName ('subtotal');
             for (const subtotal of subtotales) {
-                totalCompra += parseFloat (subtotal.innerText.replace ("$" , ""));
+                totalCompra += parseFloat (subtotal.innerText.replace ("$" , "").replace(",", ""));
             }
-            totalCarrito.innerText = '$' + totalCompra.toFixed(3).padEnd(6, "0").toLocaleString('es-ES');
+            totalCarrito.innerText = '$' + totalCompra;
 
             localStorage.setItem(`cantidad-${prod.id}`, cantidad);
-            localStorage.setItem('compraTotal', totalCompra.toFixed(3).padEnd(6, "0").toLocaleString('es-ES'));
+            localStorage.setItem('compraTotal', totalCompra);
         })  
     }
 
     //Agrego el total
-    totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES');
+    totalCarrito.innerText = '$' + totalCompra.toLocaleString('es-ES').replace(',' , '.');
     
 
     //agrego el evento al boton de eliminar
