@@ -97,7 +97,17 @@ function agregarACarrito (producto){
     //cargo lo que tengo en el carrito    
     carrito = cargarCarritoLS();
     //agrego el producto nuevo al carrito
-    carrito.push (producto); 
+    // carrito.push (producto); 
+
+    const productoExistente = carrito.find(p => p.id === producto.id);
+    if (productoExistente) {
+        // Si el producto ya existe, incrementar la cantidad en uno
+        productoExistente.cantidad++;
+    } else {
+        // Si el producto no existe, agregarlo al carrito
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
     // Guardar el carrito en localStorage
     guardarCarritoLS (carrito);
     //Actualizo el contador
@@ -105,9 +115,9 @@ function agregarACarrito (producto){
     mostrarContador(contador);
 }
 
+
 // Renderizar carrito
 function renderizarCarrito(carrito) {
-    // let totalCompra = 0;
     if (localStorage.getItem('compraTotal')) {
         let totalActualizado = localStorage.getItem('compraTotal');
         totalCompra = totalActualizado;
@@ -117,15 +127,13 @@ function renderizarCarrito(carrito) {
     tablaBody.innerHTML = "";
     
     for (const prod of carrito) {
-        const cantidad = 1;
-        let subTotal = prod.precio * cantidad; 
+        let subTotal = prod.precio * prod.cantidad; 
         if (!localStorage.getItem('compraTotal')) {
             totalCompra += subTotal;
     }
-}
+    }
     for (const prod of carrito){
-        let cantidad = parseInt(localStorage.getItem(`cantidad-${prod.id}`)) || 1;
-        let subTotal = prod.precio * cantidad;
+        let subTotal = prod.precio * prod.cantidad;
 
         const tr = document.createElement ('tr');
         tr.innerHTML = `
@@ -146,7 +154,11 @@ function renderizarCarrito(carrito) {
                 })}
             </td>
             <td>
-                <div class="inputCantidad"><input step="1" value="1" min="1" type="number" id="cantidadAgregada-${prod.id}" class="form-control cantidadProds"/></div>
+                <div class="inputCantidad">                
+                <button id="decrementar-${prod.id}" class="button"> - </button>
+				<span class="product-price">${prod.cantidad}</span>
+				<button id="incrementar-${prod.id}" class="button"> + </button>
+                </div>
             </td>
             <td class="subtotal" id= "subtotal-${prod.id}">${subTotal.toLocaleString("es-AR", {
                 style: "currency",
@@ -155,39 +167,19 @@ function renderizarCarrito(carrito) {
             </td>
         `;
 
-        tablaBody.appendChild (tr);
+    tablaBody.appendChild (tr);
 
-        const inputCant = document.getElementById (`cantidadAgregada-${prod.id}`);
-        const subtotalHTML = document.getElementById(`subtotal-${prod.id}`);
+    // Agrego evento al botón decrementar.
+	const decrementar = document.getElementById(`decrementar-${prod.id}`);
+	decrementar.addEventListener("click", () => {
+    decrementarProducto(prod.id);
+	});
 
-        if (localStorage.getItem(`cantidad-${prod.id}`)) {
-            inputCant.value = cantidad; 
-        }
-
-        inputCant.addEventListener ('input', () => {
-            cantidad = parseInt (inputCant.value);
-            subTotal = prod.precio * cantidad;
-            subtotalHTML.innerText = `${subTotal.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS"
-                })}`;
-            totalCompra = 0;
-
-            const subtotales = document.getElementsByClassName ('subtotal');
-            for (const subtotal of subtotales) {
-                totalCompra += parseFloat(subtotal.innerText.replace('$',"").replace('.',''));
-            }
-            totalCarrito.innerText = totalCompra.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS"
-                });
-
-            localStorage.setItem(`cantidad-${prod.id}`, cantidad);
-            localStorage.setItem('compraTotal', totalCompra.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS"
-                }));
-        })  
+		// Agrego evento al botón incrementar.
+		const incrementar = document.getElementById(`incrementar-${prod.id}`);
+		incrementar.addEventListener("click", () => {
+		incrementarProducto(prod.id);
+		});      
     }
 
     //Agrego el total
@@ -218,6 +210,30 @@ function renderizarCarrito(carrito) {
     return (totalCompra);
 }
 
+// Disminuir la cantidad
+function decrementarProducto (id) {
+	const producto = carrito.find((prod) => prod.id === id);
+	// Si es 1, hay que eliminarlo porque no podemos tener cantidad cero
+	if (producto.cantidad === 1) {
+		eliminarProducto(producto);
+	} else {
+		producto.cantidad--;
+		// Guardamos el carrito en el localStorage para tenerlo actualizado si recargamos la página porque hicimos cambios
+		localStorage.setItem("carrito", JSON.stringify(carrito));
+		// Actualizamos la vista del carrito porque hemos hecho cambios
+		renderizarCarrito(carrito);
+	}
+};
+
+// Aumentar la cantidad
+function incrementarProducto (id){
+	const producto = carrito.find((prod) => prod.id === id);
+	producto.cantidad++;
+	// Guardamos el carrito en el localStorage para tenerlo actualizado si recargamos la página porque hicimos cambios
+	localStorage.setItem("carrito", JSON.stringify(carrito));
+	// Actualizamos la vista del carrito porque hemos hecho cambios
+	renderizarCarrito(carrito);
+};
 
 // Eliminar producto del carrito
 function eliminarProducto (prodAEliminar) {
