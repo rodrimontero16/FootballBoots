@@ -155,9 +155,9 @@ function renderizarCarrito(carrito) {
             </td>
             <td>
                 <div class="inputCantidad">                
-                <button id="decrementar-${prod.id}" class="button"> - </button>
+                <button id="decrementar-${prod.id}" class="button-cant disminuir btn btn-light">-</button>
 				<span class="product-price">${prod.cantidad}</span>
-				<button id="incrementar-${prod.id}" class="button"> + </button>
+				<button id="incrementar-${prod.id}" class="button-cant btn btn-light">+</button>
                 </div>
             </td>
             <td class="subtotal" id= "subtotal-${prod.id}">${subTotal.toLocaleString("es-AR", {
@@ -218,9 +218,9 @@ function decrementarProducto (id) {
 		eliminarProducto(producto);
 	} else {
 		producto.cantidad--;
-		// Guardamos el carrito en el localStorage para tenerlo actualizado si recargamos la página porque hicimos cambios
+		// Guardamos el carrito en el localStorage
 		localStorage.setItem("carrito", JSON.stringify(carrito));
-		// Actualizamos la vista del carrito porque hemos hecho cambios
+		// Actualizamos carrito
 		renderizarCarrito(carrito);
 	}
 };
@@ -229,9 +229,9 @@ function decrementarProducto (id) {
 function incrementarProducto (id){
 	const producto = carrito.find((prod) => prod.id === id);
 	producto.cantidad++;
-	// Guardamos el carrito en el localStorage para tenerlo actualizado si recargamos la página porque hicimos cambios
+	// Guardamos el carrito en el localStorage
 	localStorage.setItem("carrito", JSON.stringify(carrito));
-	// Actualizamos la vista del carrito porque hemos hecho cambios
+	// Actualizamos carrito
 	renderizarCarrito(carrito);
 };
 
