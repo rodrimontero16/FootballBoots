@@ -110,7 +110,7 @@ function renderizarCarrito(carrito) {
     // let totalCompra = 0;
     if (localStorage.getItem('compraTotal')) {
         let totalActualizado = localStorage.getItem('compraTotal');
-        totalCompra = totalActualizado.toLocaleString('es-AR');
+        totalCompra = totalActualizado;
     } else {
         totalCompra = 0;
     }
@@ -120,9 +120,9 @@ function renderizarCarrito(carrito) {
         const cantidad = 1;
         let subTotal = prod.precio * cantidad; 
         if (!localStorage.getItem('compraTotal')) {
-            totalCompra += subTotal;}
+            totalCompra += subTotal;
     }
-
+}
     for (const prod of carrito){
         let cantidad = parseInt(localStorage.getItem(`cantidad-${prod.id}`)) || 1;
         let subTotal = prod.precio * cantidad;
@@ -175,7 +175,7 @@ function renderizarCarrito(carrito) {
 
             const subtotales = document.getElementsByClassName ('subtotal');
             for (const subtotal of subtotales) {
-                totalCompra += parseFloat (subtotal.innerText.replace ("$" , ""));
+                totalCompra += parseFloat(subtotal.innerText.replace('$',"").replace('.',''));
             }
             totalCarrito.innerText = totalCompra.toLocaleString("es-AR", {
                 style: "currency",
@@ -183,7 +183,10 @@ function renderizarCarrito(carrito) {
                 });
 
             localStorage.setItem(`cantidad-${prod.id}`, cantidad);
-            localStorage.setItem('compraTotal', totalCompra);
+            localStorage.setItem('compraTotal', totalCompra.toLocaleString("es-AR", {
+                style: "currency",
+                currency: "ARS"
+                }));
         })  
     }
 
