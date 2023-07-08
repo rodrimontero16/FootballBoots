@@ -79,7 +79,7 @@
 }
 .container-main .tienda-body .tienda {
   padding: 20px;
-  color: white;
+  color: #00060C;
   border-radius: 30px;
   background-color: whitesmoke;
   width: 100%;
@@ -115,36 +115,46 @@
   background-color: whitesmoke;
   padding: 20px;
   width: 100%;
-  height: 520px;
+  height: 400px;
 }
 @media only screen and (max-width: 950px) {
   .container-main .filtrado {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-areas: "tipo marca" "precio botones";
     height: 300px;
     width: 90%;
+  }
+  .container-main .filtrado .funcionesFiltro {
+    margin-top: 80px;
+    height: 40px;
   }
 }
 @media only screen and (max-width: 650px) {
   .container-main .filtrado {
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto;
-    height: 250px;
+    grid-template-areas: "tipo" "marca" "precio" "botones";
+    height: 300px;
     width: 95%;
-    padding-right: 20px;
   }
   .container-main .filtrado h4 {
     font-size: medium;
+  }
+  .container-main .filtrado .funcionesFiltro {
+    margin-top: 0px;
+    height: 40px;
   }
 }
 .container-main .filtrado .filtro {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  align-items: center;
 }
 .container-main .filtrado .filtro h4 {
   text-align: center;
+}
+.container-main .filtrado .filtro select {
+  width: 73%;
 }
 @media only screen and (max-width: 650px) {
   .container-main .filtrado .filtro {
@@ -159,13 +169,11 @@
   .container-main .filtrado .filtro .filtroPrecio input {
     width: 80%;
     margin-left: 20px;
+    border: solid 1px;
   }
   .container-main .filtrado .filtro .filtroPrecio label {
-    margin-left: 40px;
+    margin-left: 50px;
   }
-}
-.container-main .filtrado .filtro input {
-  border: solid 1px;
 }
 .container-main .filtrado .funcionesFiltro {
   display: flex;
