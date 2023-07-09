@@ -1,3 +1,7 @@
+//Defino la variable producto para la asincronia
+let productos;
+obtenerJSONProds();
+
 // Guardar productos en LS
 function guardarProductos (productos){
     localStorage.setItem ('productos' , JSON.stringify(productos));
@@ -88,6 +92,7 @@ function aplicarFiltros() {
         }
         return true;
         });
+
     
         // Vacio el contenedor y vuelvo a renderizar con los filtros aplicados
         containerProds.innerHTML = '';
@@ -337,8 +342,10 @@ function borrarLS (carrito){
     let compraFinalizada = document.getElementById ('compraFinalizada');
     let vaciarCarrito = document.getElementById ('vaciarCarrito')
     compraFinalizada.addEventListener('click', () =>{
+    //Enviar el contenido del carro mediante POST al JsonPlaceHolder - Opcion1
     localStorage.clear();
     location.reload();
+    
     })
     vaciarCarrito.addEventListener('click', () =>{
         if (carrito.length == 0) {
@@ -346,20 +353,30 @@ function borrarLS (carrito){
         } else {
             localStorage.clear();
             location.reload();
+            
         }
         })
 }
 
-// Variable contador actualizada 
+// Funciones para el contador 
 function contadorCarro (carrito) {
     carrito = cargarCarritoLS();
     let contador = carrito.length;
     return contador;
 }
-
 function mostrarContador (contador){
     if (contador > '0'){
         contadorCarrito.style.display = 'block'
         contadorCarrito.innerText = contador;
 }
+}
+
+//Funcion para asincronia
+async function obtenerJSONProds () {
+    const URLJSON = 'js/data.json';
+    const respuesta = await fetch(URLJSON);
+    const data = await respuesta.json();
+    productos = data;
+    guardarProductos(productos);
+    renderizarProds(productos);
 }

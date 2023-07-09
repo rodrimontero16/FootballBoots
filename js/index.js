@@ -11,7 +11,7 @@ const maxPrecio = document.getElementById('max');
 let carrito = [];
 
 // cargo los productos a la tienda 
-renderizarProds ();
+// renderizarProds (productos);
 
 //muestro el contador
 contador = contadorCarro();
