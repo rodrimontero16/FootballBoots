@@ -160,8 +160,6 @@ function agregarACarrito (producto){
     //cargo lo que tengo en el carrito    
     carrito = cargarCarritoLS();
     //agrego el producto nuevo al carrito
-    // carrito.push (producto); 
-
     const productoExistente = carrito.find(p => p.id === producto.id);
     if (productoExistente) {
         // Si el producto ya existe, incrementar la cantidad en uno
