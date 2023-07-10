@@ -1,7 +1,3 @@
-//Defino la variable producto para la asincronia
-let productos;
-obtenerJSONProds();
-
 // Guardar productos en LS
 function guardarProductos (productos){
     localStorage.setItem ('productos' , JSON.stringify(productos));
@@ -61,93 +57,92 @@ function renderizarProds (productos) {
     
 }
 
-//Evento para los botones de los filtros
-const btnAplicarFiltro = document.getElementById('aplicarFiltros');
-btnAplicarFiltro.addEventListener('click', aplicarFiltros);
-const btnBorrarFiltro = document.getElementById('borrarFiltros');
-btnBorrarFiltro.addEventListener('click', borrarFiltros);
-
 // Función para aplicar los filtros
 function aplicarFiltros() {
-    // Obtener los valores seleccionados de los filtros
-    const tipoSeleccionado = filtroTipo.value;
-    const marcaSeleccionada = filtroMarca.value;
-    const minPrecioSeleccionado = parseFloat(minPrecio.value);
-    const maxPrecioSeleccionado = parseFloat(maxPrecio.value);
+const btnAplicarFiltro = document.getElementById('aplicarFiltros');
+btnAplicarFiltro.addEventListener('click', () =>{
+        // Obtener los valores seleccionados de los filtros
+        const tipoSeleccionado = filtroTipo.value;
+        const marcaSeleccionada = filtroMarca.value;
+        const minPrecioSeleccionado = parseFloat(minPrecio.value);
+        const maxPrecioSeleccionado = parseFloat(maxPrecio.value);
+        
+            // Filtrar los productos
+            const productosFiltrados = productos.filter((prod) => {
+            // Filtrar por tipo
+            if (tipoSeleccionado !== 'TIPO' && prod.tipo !== tipoSeleccionado) {
+                return false;
+            }
+            // Filtrar por marca
+            if (marcaSeleccionada !== 'MARCA' && prod.marca !== marcaSeleccionada) {
+                return false;
+            }
+            // Filtrar por precio
+            const precio = prod.precio;
+            if (precio < minPrecioSeleccionado || precio > maxPrecioSeleccionado) {
+                return false;
+            }
+            return true;
+            });
     
-        // Filtrar los productos
-        const productosFiltrados = productos.filter((prod) => {
-        // Filtrar por tipo
-        if (tipoSeleccionado !== 'TIPO' && prod.tipo !== tipoSeleccionado) {
-            return false;
-        }
-        // Filtrar por marca
-        if (marcaSeleccionada !== 'MARCA' && prod.marca !== marcaSeleccionada) {
-            return false;
-        }
-        // Filtrar por precio
-        const precio = prod.precio;
-        if (precio < minPrecioSeleccionado || precio > maxPrecioSeleccionado) {
-            return false;
-        }
-        return true;
-        });
-
+        
+            // Vacio el contenedor y vuelvo a renderizar con los filtros aplicados
+            containerProds.innerHTML = '';
+            for (const prod of productosFiltrados) {
+            titleProds.innerHTML = 'PRODUCTOS FILTRADOS'
+            containerProds.innerHTML += `
+                <div class="card m-3">
+                <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${prod.marca} ${prod.modelo}</h5>
+                    <p class="card-text">${prod.precio.toLocaleString("es-AR", {
+                    style: "currency",
+                    currency: "ARS"
+                    })}</p>
+                    <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
+                </div>
+                </div>
+            `;
+            }
+            let botones = document.getElementsByClassName('addCarrito');  
     
-        // Vacio el contenedor y vuelvo a renderizar con los filtros aplicados
-        containerProds.innerHTML = '';
-        for (const prod of productosFiltrados) {
-        titleProds.innerHTML = 'PRODUCTOS FILTRADOS'
-        containerProds.innerHTML += `
-            <div class="card m-3">
-            <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">${prod.marca} ${prod.modelo}</h5>
-                <p class="card-text">${prod.precio.toLocaleString("es-AR", {
-                style: "currency",
-                currency: "ARS"
-                })}</p>
-                <button class="btn btn-primary addCarrito" id="${prod.id}">Añadir al carrito</button>
-            </div>
-            </div>
-        `;
-        }
-        let botones = document.getElementsByClassName('addCarrito');  
-
-        for (const boton of botones){
-            boton.addEventListener('click', () =>{
-                const prodAgregado = productos.find ((producto) => producto.id == boton.id);
-                agregarACarrito (prodAgregado);
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
+            for (const boton of botones){
+                boton.addEventListener('click', () =>{
+                    const prodAgregado = productos.find ((producto) => producto.id == boton.id);
+                    agregarACarrito (prodAgregado);
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                        Toast.fire({
+                        icon: 'success',
+                        title: `Agregaste ${prodAgregado.marca} ${prodAgregado.modelo}`
+                    })
                 })
-                    Toast.fire({
-                    icon: 'success',
-                    title: `Agregaste ${prodAgregado.marca} ${prodAgregado.modelo}`
-                })
-            })
-        }
+            }
+})
 }
 
 // Función para borrar los filtros
 function borrarFiltros() {
-    // Restablezco los valores de los filtros
-    filtroTipo.value = 'TIPO';
-    filtroMarca.value = 'MARCA';
-    minPrecio.value = '0';
-    maxPrecio.value = '200000';
-    // Vacio el contenedor y vuelvo a renderizar los productos para que me muestre los destacados
-    containerProds.innerHTML = '';
-    renderizarProds(productos);
-
+const btnBorrarFiltro = document.getElementById('borrarFiltros');
+btnBorrarFiltro.addEventListener('click' , () => {
+        // Restablezco los valores de los filtros
+        filtroTipo.value = 'TIPO';
+        filtroMarca.value = 'MARCA';
+        minPrecio.value = '0';
+        maxPrecio.value = '200000';
+        // Vacio el contenedor y vuelvo a renderizar los productos para que me muestre los destacados
+        containerProds.innerHTML = '';
+        renderizarProds(productos);
+})
 }
 
 //Guardar en el carrito
@@ -182,7 +177,6 @@ function agregarACarrito (producto){
     contador = carrito.length;
     mostrarContador(contador);
 }
-
 
 // Renderizar carrito
 function renderizarCarrito(carrito) {
@@ -373,8 +367,8 @@ function mostrarContador (contador){
 
 //Funcion para asincronia
 async function obtenerJSONProds () {
-    const URLJSON = 'js/data.json';
-    const respuesta = await fetch(URLJSON);
+    const URLJSON = './js/data.json';
+    const respuesta = await fetch (URLJSON);
     const data = await respuesta.json();
     productos = data;
     guardarProductos(productos);

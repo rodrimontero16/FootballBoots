@@ -1,4 +1,8 @@
-// accedo a mi div en html por el id
+//Defino la variable producto para la asincronia
+let productos;
+obtenerJSONProds();
+
+// Accesos al DOM
 const containerProds = document.getElementById('containerProds');
 const contadorCarrito = document.getElementById ('contadorCarrito');
 const titleProds = document.getElementById('titleProds');
@@ -7,12 +11,13 @@ const filtroMarca = document.getElementById('filtroMarca');
 const minPrecio = document.getElementById('min');
 const maxPrecio = document.getElementById('max');
 
-// creo el array para los productos del carro
+// Array para productos que van al carrito
 let carrito = [];
 
-// cargo los productos a la tienda 
-// renderizarProds (productos);
+//Llamo a la funcion de los filtros
+aplicarFiltros();
+borrarFiltros();
 
-//muestro el contador
+//Muestro el contador
 contador = contadorCarro();
 mostrarContador(contador);
